@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify
 from PIL import Image
+import io
+import base64
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -45,24 +47,43 @@ def generate_crochet_pattern(pixelated_image):
 
     return pattern
 
+def image_to_base64(image):
+    buffered = io.BytesIO()
+    img_format = image.format if image.format else 'PNG'  # Default to PNG if format is unknown
+    image.save(buffered, format=img_format)
+    img_str = base64.b64encode(buffered.getvalue()).decode('utf-8')
+    return img_str
+
+def extract_pixel_data(image, pixel_size):
+    img = image.resize((image.width // pixel_size, image.height // pixel_size), Image.NEAREST)
+    pixel_data = []
+    for y in range(img.height):
+        row = []
+        for x in range(img.width):
+            color = img.getpixel((x, y))
+            row.append(color)
+        pixel_data.append(row)
+    return pixel_data
+
 @app.route('/process_image', methods=['POST'])
 def process_image():
     file = request.files['image']
     img = Image.open(file.stream)
-  # Pixelate the image
     pixel_size = int(request.form.get('pixel_size', 10))
     pixelated_img = pixelate_image(img, pixel_size)
-    print(pixelated_img)
-  # Extract colors
     colors = extract_colors(img, pixel_size)
-    print("Extracted Colors:", colors)  # Debug line
-  
-  # Generate crochet pattern
     pattern = generate_crochet_pattern(pixelated_img)
-    # return jsonify({'pattern': pattern})
-    # Apply new data in post
-    print(jsonify({'pattern': pattern,'img_px': pixelated_img, 'colors': list(colors)}))
-    return jsonify({'pattern': pattern,'img_px': pixelated_img, 'colors': list(colors)})
+    img_base64 = image_to_base64(pixelated_img)
+    pixel_data = extract_pixel_data(img, pixel_size)
 
+    response = {
+        'img_base64': img_base64,
+        'colors': list(colors),
+        'pixel_data': pixel_data
+
+        # 'pattern': pattern 
+    }
+
+    return jsonify(response)
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

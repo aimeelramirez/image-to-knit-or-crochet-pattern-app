@@ -1,5 +1,6 @@
 # Flask==2.0.1
 Flask==1.1.2  # Ensure this is the Flask version you need
 Werkzeug==0.16.1  # Use a version that includes url_quote
+Jinja2==2.11.3  # Example version that includes escape
 Pillow==8.2.0
 flask-cors==3.0.10

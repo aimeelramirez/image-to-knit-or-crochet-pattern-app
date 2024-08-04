@@ -33,10 +33,8 @@ This project is a web application that converts images to crochet patterns. User
 ```
 image-to-knit-or-crochet-pattern-app/
 │
-├── .github/
-│ └── workflows/
-│ └── ci.yml
-├── styles.css
+├── css
+│ └── styles.css
 ├── images/
 └── Bunny_Circle_Lavender.png
 ├── script.js
@@ -45,6 +43,10 @@ image-to-knit-or-crochet-pattern-app/
 ├── LICENSE
 ├── README.md
 └── requirements.txt
+├── Dockerfile
+├── Procfile
+├── runtime.txt
+└── script.js
 ```
 
 ## Usage

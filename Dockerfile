@@ -4,9 +4,9 @@ FROM python:3.10-slim
 # Set the working directory
 WORKDIR /
 
-# Install required system dependencies
+# Install required system dependencies and build tools
 RUN apt-get update && \
-    apt-get install -y zlib1g-dev libjpeg-dev libpng-dev && \
+    apt-get install -y zlib1g-dev libjpeg-dev libpng-dev build-essential && \
     apt-get clean
 
 # Copy the current directory contents into the container

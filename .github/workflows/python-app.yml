@@ -45,14 +45,21 @@ jobs:
 
     - name: Health check
       run: |
-        curl -f http://localhost:5000
+        curl -f http://localhost:5000 || exit 1
 
     - name: Output Docker logs on failure
       if: failure()
       run: |
+        echo "Checking Docker service status"
+        docker info
+        echo "Listing all containers"
+        docker ps -a
         container_id=$(docker ps -q --filter "name=web")
         if [ -n "$container_id" ]; then
+          echo "Container logs for $container_id:"
           docker logs "$container_id"
+        else
+          echo "No container found with the name 'web'"
         fi
 
     - name: Deploy to GitHub Pages

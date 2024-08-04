@@ -1,4 +1,4 @@
-async function uploadImage() {
+document.getElementById('uploadButton').addEventListener('click', async () => { 
     const fileInput = document.getElementById('imageUpload');
     const pixelSize = document.getElementById('pixelSize').value;
     const file = fileInput.files[0];
@@ -91,4 +91,4 @@ async function uploadImage() {
                 colorList.appendChild(listItem);
             });
         });
-    }      
+    });

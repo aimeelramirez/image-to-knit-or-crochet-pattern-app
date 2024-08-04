@@ -1,4 +1,4 @@
-name: Bunny
+name: web
 
 on:
   push:
@@ -65,8 +65,8 @@ jobs:
     - name: Deploy to GitHub Pages
       if: github.event_name == 'push'
       run: |
-        git config --global user.email "you@example.com"
-        git config --global user.name "Your Name"
+        git config --global user.email "alramirez1@alumni.fullsail.edu"
+        git config --global user.name "Aimee Ramirez"
         touch .nojekyll
         echo "Build successful, deploying to GitHub Pages"
         git init

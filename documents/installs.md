@@ -89,3 +89,14 @@ Before you begin, ensure you have met the following requirements:
     ```
 
 
+
+
+Docker
+# Build the Docker image
+docker build -t web .
+
+# Run the Docker container
+docker run -d -p 5000:5000 web
+
+# Check the logs to ensure the Flask app started correctly
+docker logs $(docker ps -q --filter "ancestor=web")

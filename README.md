@@ -9,6 +9,8 @@ Creating an art's and crafts project. (Temporary naming for the project for now)
 |[installs/get started](/document/install.md)|
 |[user story](/documents/userstory.md)|
 
+![alt text](images/exampleofconcept.png)
+
 This project is a web application that converts images to crochet patterns. Users can upload an image, define the pixel size, and generate a pixelated version of the image along with a color grid and pattern details.
 
 ## Features
@@ -21,7 +23,7 @@ This project is a web application that converts images to crochet patterns. User
 - Sidebar list of colors with highlighted click and hover information
 
 ## Project Structure
-
+```
 image-to-knit-or-crochet-pattern-app/
 │
 ├── .github/
@@ -36,6 +38,7 @@ image-to-knit-or-crochet-pattern-app/
 ├── LICENSE
 ├── README.md
 └── requirements.txt
+```
 
 ## Usage
 

@@ -8,7 +8,7 @@ document.getElementById('uploadButton').addEventListener('click', async () => {
   // Show the loader
   document.getElementById('loader').style.display = 'block';
   try {
-    const response = await fetch('http://127.0.0.1:5000/process_image', {
+    const response = await fetch('https://bunny-backend-ce104ef992fd.herokuapp.com/process_image', {
       method: 'POST',
       body: formData,
     });

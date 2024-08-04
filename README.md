@@ -1,4 +1,9 @@
 # image-to-knit-or-crochet-pattern-app also known as Bunny
+|Project Links|
+|--|
+|[Demo App](https://aimeelramirez.github.io/Bunny/)|
+|[Frontend](https://github.com/aimeelramirez/Bunny)|
+|[Backend](https://bunny-backend-ce104ef992fd.herokuapp.com/)|
 
 Craft and Art Project
 

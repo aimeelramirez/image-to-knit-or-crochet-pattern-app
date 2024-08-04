@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image to Pattern</title>
+</head>
+<body>
+    <h1>Image to Crochet/Knit Pattern</h1>
+    <input type="file" id="imageUpload" accept="image/*" />
+    <input type="number" id="pixelSize" placeholder="Pixel Size" value="10" />
+    <button onclick="uploadImage()">Upload</button>
+    <pre id="patternOutput"></pre>
+
+    <script>
+        async function uploadImage() {
+            const fileInput = document.getElementById('imageUpload');
+            const pixelSize = document.getElementById('pixelSize').value;
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append('image', file);
+            formData.append('pixel_size', pixelSize);
+
+            const response = await fetch('http://127.0.0.1:5000/process_image', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            document.getElementById('patternOutput').innerText = JSON.stringify(result.pattern, null, 2);
+        }
+    </script>
+</body>
+</html>

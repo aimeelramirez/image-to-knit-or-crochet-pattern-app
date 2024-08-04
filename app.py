@@ -11,6 +11,19 @@ def pixelate_image(image, pixel_size):
     img = img.resize((img.width * pixel_size, img.height * pixel_size), Image.NEAREST)
     return img
 
+def extract_colors(image, pixel_size=10):
+    # Pixelate image 
+    img = image.resize((image.width // pixel_size, image.height // pixel_size), Image.NEAREST)
+    
+    # Collect unique colors
+    colors = set()
+    for y in range(img.height):
+        for x in range(img.width):
+            color = img.getpixel((x, y))
+            colors.add(color)
+    
+    return colors
+
 def generate_crochet_pattern(pixelated_image):
     stitch_map = {
         (255, 255, 255): 'single crochet',  # white
@@ -36,20 +49,20 @@ def generate_crochet_pattern(pixelated_image):
 def process_image():
     file = request.files['image']
     img = Image.open(file.stream)
+  # Pixelate the image
     pixel_size = int(request.form.get('pixel_size', 10))
     pixelated_img = pixelate_image(img, pixel_size)
-    
-    # Print pixel colors for debugging
-    colors = set()
-    for y in range(pixelated_img.height):
-        for x in range(pixelated_img.width):
-            color = pixelated_img.getpixel((x, y))
-            colors.add(color)
-    
-    print("Colors in the pixelated image:", colors)  
-    
+    print(pixelated_img)
+  # Extract colors
+    colors = extract_colors(img, pixel_size)
+    print("Extracted Colors:", colors)  # Debug line
+  
+  # Generate crochet pattern
     pattern = generate_crochet_pattern(pixelated_img)
-    return jsonify({'pattern': pattern})
+    # return jsonify({'pattern': pattern})
+    # Apply new data in post
+    print(jsonify({'pattern': pattern,'img_px': pixelated_img, 'colors': list(colors)}))
+    return jsonify({'pattern': pattern,'img_px': pixelated_img, 'colors': list(colors)})
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

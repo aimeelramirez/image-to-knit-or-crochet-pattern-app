@@ -54,12 +54,12 @@ jobs:
         docker info
         echo "Listing all containers"
         docker ps -a
-        container_id=$(docker ps -q --filter "name=web")
+        container_id=$(docker ps -a --filter "id=43f0ed7874fe")
         if [ -n "$container_id" ]; then
           echo "Container logs for $container_id:"
           docker logs "$container_id"
         else
-          echo "No container found with the name 'web'"
+          echo "No container found with the name '43f0ed7874fe'"
         fi
 
     - name: Deploy to GitHub Pages

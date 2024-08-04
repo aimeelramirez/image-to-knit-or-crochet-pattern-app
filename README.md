@@ -5,6 +5,8 @@
 |[Frontend](https://github.com/aimeelramirez/Bunny)|
 |[Backend](https://bunny-backend-ce104ef992fd.herokuapp.com/)|
 
+![alt text](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTZmZ2VoOGIybDQxMnkwejZmd214dmZycGdqanhsMHNxMHQ3cXAyaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/n6yyaeWBnAjlFiq00X/giphy.gif)
+
 Craft and Art Project
 
 Creating an art's and crafts project. (Temporary naming for the project for now)

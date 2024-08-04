@@ -162,7 +162,9 @@ ul{
 }
 .color-list {
     list-style-type: numbers;
-    padding: 0;
+    padding:0'
+
+    height: 50%;
 
 }
 
